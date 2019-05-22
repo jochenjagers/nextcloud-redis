@@ -1,6 +1,8 @@
 FROM nextcloud:stable
-RUN apt-get update
-RUN apt-get install -y redis-server
+RUN apt-get update && apt-get install -y \
+    redis-server \
+ && rm -rf /var/lib/apt/lists/*
+
 RUN update-rc.d redis-server defaults
 ADD start.sh /
 
